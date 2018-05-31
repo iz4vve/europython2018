@@ -1,0 +1,223 @@
+Good features beat algorithms
+EuroPython 2018
+25 Jul 2018
+Tags: optum, europython, python
+
+Pietro Mascolo
+Sr. Data Scientist, Optum Ireland
+pietro_mascolo@optum.com
+
+Linkedin: *pmascolo*
+Twitter: *@iz4vve*
+Github: *iz4vve*
+Skype: *iz4vve*
+
+*Slides*and*code*: [[https://bit.ly/2J6xIzj]]
+
+###############################################################
+* Introduction
+
+: Let's spend a few minutes to get to know each other.
+
+###############################################################
+* Contents
+.html math.html
+
+I'm going to:
+
+- introduce myself;
+- talk about data;
+- talk about features;
+- make the mandatory `XKCD` reference;
+- show you some code.
+
+: I want to make sure that you're all in the right room :)
+: An intermediate understanding of statistics and data handling will be VERY useful in following the talk.
+
+###############################################################
+* Me
+
+.image imgs/me-hor.png 200 525
+
+- Physicist;
+- *Python* / *Golang* enthusiast;
+- *Kotlin* / Scala practitioner;
+- Ham Radio Operator (*EI/IZ4VVE*);
+- Mountain hiker and Karateka;
+- Amateur Photographer;
+- ...
+
+
+###############################################################
+* Optum / UHG
+
+.image imgs/optum-mission.png 500 _
+.caption [[http://www.optum.com][optum.com]], [[http://www.unitedhealthgroup.com][unitedhealthgroup.com]]
+
+: Does anybody know of Optum/UHG?
+: This is actually old: we are now ranked 5th on Fortune 500.
+: We recently surpassed 300K employees worldwide, with presence of ~1200 people in Ireland.
+: If anybody is interested, we are hiring ;)
+
+###############################################################
+* Why are we here?
+
+###############################################################
+* Our monster
+Introduce a dataset and a task (very big dataset - lots of features)
+
+###############################################################
+* Which features?
+
+###############################################################
+* Feature selection
+
+A lot of ML problems are repressented by many features. This means that the scientist has a lot of information at his/her disposal, but...
+
+- The scientist's opportunity to understand the data decreases.
+- Training time increases (sometimes exponentially).
+- Risk of overfitting increases.
+
+.html code/better_way.html
+
+: Sometimes there is too much stuff. We cannot understand all features' interactions and determine what is important and what is noise.
+: Data preparation is made more difficult by the sheer amount of information.
+: For most models, training time increases sharply with the number of features.
+: Some features might be highly collinear (problematic for some algorithms) or they might represent the same thing as other features.
+
+
+###############################################################
+* Good and bad feature selectors
+
+  There is no free lunch...
+
+  ...but some are very expensive...
+
+Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
+
+* A (not-so-extreme) example
+.image imgs/Anscombe.png 500 _
+.caption Anscombe quartet: all four datasets have almost the same descriptive statistics (means, variances, correlation coefficient, regression coefficients)
+
+
+: Simple statistics can be very helpful in determining the type of dataset and the relationships between variables.
+: However we should not trust them blindly.
+: In this case we would be fooled into thinking the datasets are VERY similar when in fact they are quite different.
+: Correlation, in particular, fails spectacularly here because of its inherent inability to capture non-linear relationships.
+:
+: We should definitely use summary statistics, but we should also maintain a healthy dose of skepticism.
+
+###############################################################
+* Filtering techniques
+
+Filter Methods considers the relationship between features and the target variable to compute the importance of features.
+
+- F Test
+  
+  # for regression / classification tasks
+  from sklearn.feature_selection import f_regression, f_classification
+
+- Mutual Information
+ 
+  # for regression / classification tasks
+  from sklearn.feature_selection import mututal_info_regression, mututal_info_classif
+
+- Variance Threshold
+
+  from sklearn.feature_selection import VarianceThreshold
+
+: F TEST
+: F Test is a statistical test used to compare between models and check if the difference is significant.
+: F-Test does a hypothesis testing model X and Y where X is a model created by just a constant and Y is the model created by a constant and a feature.
+: Least Square Errors of the models are verified to be significant
+: Useful to know importance of each feature.
+: There are some drawbacks of using F-Test to select your features.
+: - F-Test checks for and only captures linear relationships between features and labels. (remember correlation?)
+: - A highly correlated feature is given higher score and less correlated features are given lower score.
+
+: MUTUAL INFORMATION
+: Mutual Information  measures the dependence of one variable to another.
+: If X and Y are independent, then no information about Y can be obtained by knowing X or vice versa. Hence their mutual information is 0.
+: If X is a deterministic function of Y, then we can determine X from Y and Y from X with mutual information 1.
+: We can select our features by ranking their mutual information with the target variable.
+: Advantage of using mutual information over F-Test is, it does well with the non-linear relationship between feature and target variable.
+: Sklearn offers feature selection with Mutual Information for regression and classification tasks.
+
+
+: VARIANCE THRESHOLD
+: The idea is when a feature doesn’t vary much within itself, it generally has very little predictive power.
+: Variance Threshold doesn’t consider the relationship of features with the target variable.
+
+###############################################################
+* Wrapper Methods
+
+Wrapper Methods generate models with a subsets of feature and measure their performance.
+The most famous examples are *forward*search* and *recursive*feature*elimination.
+
+.image imgs/wrapper_methods.png 380 _
+.caption Forward Search (left) and Recursive Feature Elimination (right) - [[https://towardsdatascience.com/why-how-and-when-to-apply-feature-selection-e9c69adfabf2][image source]]
+
+: FORWARD SEARCH
+: This method allows you to search for the best feature w.r.t model performance and add them to your feature subset one after the other.
+: For data with n features,
+: ->On first round ‘n’ models are created with individual feature and the best predictive feature is selected.
+: ->On second round, ‘n-1’ models are created with each feature and the previously selected feature.
+: ->This is repeated till a best subset of ‘m’ features are selected.
+
+: RECURSIVE FEATURE ELIMINATION
+: This method eliminates the worst performin feature at each stage
+: For data with n features,
+: ->On first round ‘n-1’ models are created with combination of all features except one. The least performing feature is removed
+: -> On second round ‘n-2’ models are created by removing another feature.
+: Wrapper Methods promises you a best set of features with a extensive greedy search.
+
+
+: But the main drawbacks of wrapper methods is the sheer amount of models that needs to be trained.
+: It is computationally very expensive and is infeasible with large number of features.
+
+
+
+###############################################################
+* Machine Learning algorithms
+
+Feature selection can also be acheived by the insights provided by some Machine Learning models like
+
+- Linear/LASSO regression;
+- tree based algorithms.
+
+
+###############################################################
+* LASSO regression
+
+LASSO adds an additional term to LR cost function.
+.html code/spacer.html
+.html code/spacer.html
+
+$$CF = \min_\theta \frac{1}{2} \sum_i \left( y_i - X_i\theta \right)^2 + \lambda ||\theta||_1$$
+
+: least absolute shrinkage and selection operator
+: LASSO Linear Regression can be used for feature selections.
+: Lasso Regression is performed by adding an extra term to the cost function of Linear Regression.
+: This apart from preventing overfitting also reduces the coefficients of less important features to zero.
+
+: Some people use directly the coefficient of linear regression. Not as good.
+: PROBLEM: coefficients go crazy when variables are highly collinear.
+
+###############################################################
+* Tree based algorithms
+
+
+
+###############################################################
+* Let's code!
+
+
+###############################################################
+* Q/A
+.image imgs/qa.png 500 _
+
+###############################################################
+* Thanks for your attention!
+
+.html code/thanks.html
+

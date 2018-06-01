@@ -63,17 +63,49 @@ I'm going to:
 * Why are we here?
 
 ###############################################################
-* Our monster
-Introduce a dataset and a task (very big dataset - lots of features)
+* Our dragon
+.image imgs/dragon.png 300 _
+.caption Our very own dragon
+
+: Introduce a dataset and a task (very big dataset - lots of features)
+: Make sense of a big dataset (100s of features, no real information available)
+: Who has ever ben in similar situation? 
+
+We have a dataset and a target.
+.play -edit code/breast_cancer.py /START OMIT/,/END OMIT/
+
+: What are those features?
+: What features are important?
+: Should we use all of them?
+: What if we WANT to restrict the features that we use (big dataset, limited training time)
+
+###############################################################
+* 
+
+.video crawl.mov video/mov 500 _
+#Not so long ago, in an office not that far away...
+
+#  >>> train.shape
+#  (99595, 866)
+
+: That's A LOT of features for a raw dataset...
+: How many are duplicates? How many related to each other?
+
+
 
 ###############################################################
 * Which features?
 
+
 ###############################################################
 * Feature selection
 
-A lot of ML problems are repressented by many features. This means that the scientist has a lot of information at his/her disposal, but...
+Sometimes, a lot is too much...
 
+.image imgs/bigdatadashboard.jpg 450 _
+
+###############################################################
+* Problems!
 - The scientist's opportunity to understand the data decreases.
 - Training time increases (sometimes exponentially).
 - Risk of overfitting increases.
@@ -84,6 +116,10 @@ A lot of ML problems are repressented by many features. This means that the scie
 : Data preparation is made more difficult by the sheer amount of information.
 : For most models, training time increases sharply with the number of features.
 : Some features might be highly collinear (problematic for some algorithms) or they might represent the same thing as other features.
+: simplification of models to make them easier to interpret by researchers/users,
+: shorter training times,
+: to avoid the curse of dimensionality,
+: enhanced generalization by reducing overfitting
 
 
 ###############################################################
@@ -95,9 +131,12 @@ A lot of ML problems are repressented by many features. This means that the scie
 
 Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
 
+###############################################################
 * A (not-so-extreme) example
-.image imgs/Anscombe.png 500 _
-.caption Anscombe quartet: all four datasets have almost the same descriptive statistics (means, variances, correlation coefficient, regression coefficients)
+.image imgs/Anscombe.png 450 _
+.caption Anscombe quartet: all four datasets have almost the same descriptive statistics 
+.caption (means, variances, correlation coefficient, regression coefficients)
+.caption image taken from Wikipedia
 
 
 : Simple statistics can be very helpful in determining the type of dataset and the relationships between variables.
@@ -112,19 +151,20 @@ Always be mindful of what you are trying to achieve: some techniques/metrics are
 
 Filter Methods considers the relationship between features and the target variable to compute the importance of features.
 
-- F Test
-  
-  # for regression / classification tasks
-  from sklearn.feature_selection import f_regression, f_classification
+.html code/spacer.html
+.html code/spacer.html
 
-- Mutual Information
- 
-  # for regression / classification tasks
-  from sklearn.feature_selection import mututal_info_regression, mututal_info_classif
+.image imgs/filter.png _ 800 
+.caption Filter methods
 
-- Variance Threshold
-
-  from sklearn.feature_selection import VarianceThreshold
+: - Pearson correlation;
+: - F Test;
+: - Mutual Information;
+: - Variance Threshold;
+: - LDA;
+: - ANOVA;
+: - Χ-square;
+: - Granger causality;
 
 : F TEST
 : F Test is a statistical test used to compare between models and check if the difference is significant.
@@ -143,18 +183,40 @@ Filter Methods considers the relationship between features and the target variab
 : Advantage of using mutual information over F-Test is, it does well with the non-linear relationship between feature and target variable.
 : Sklearn offers feature selection with Mutual Information for regression and classification tasks.
 
-
 : VARIANCE THRESHOLD
 : The idea is when a feature doesn’t vary much within itself, it generally has very little predictive power.
 : Variance Threshold doesn’t consider the relationship of features with the target variable.
 
+: LDA
+: Linear discriminant analysis is used to find a linear combination of
+: features that characterizes or separates two or more classes (or levels) of a categorical variable.
+
+: ANOVA
+: ANOVA stands for Analysis of variance. 
+: It is similar to LDA except for the fact that it is operated using one or more
+: categorical independent features and one continuous dependent feature.
+: It provides a statistical test of whether the means of several groups are equal or not.
+
+: CHI squared
+:  It is a is a statistical test applied to the groups of categorical
+: features to evaluate the likelihood of correlation or association between them
+: using their frequency distribution.
+
 ###############################################################
-* Wrapper Methods
+* Wrapper Methods (1/2)
 
 Wrapper Methods generate models with a subsets of feature and measure their performance.
-The most famous examples are *forward*search* and *recursive*feature*elimination.
 
-.image imgs/wrapper_methods.png 380 _
+.html code/spacer.html
+.image imgs/wrapper.png _ 700
+.caption Wrapper methods
+
+###############################################################
+* Wrapper Methods (2/2)
+
+The most famous examples are *forward*search* and *recursive*feature*elimination*.
+
+.image imgs/wrapper_methods.png 450 _
 .caption Forward Search (left) and Recursive Feature Elimination (right) - [[https://towardsdatascience.com/why-how-and-when-to-apply-feature-selection-e9c69adfabf2][image source]]
 
 : FORWARD SEARCH
@@ -175,25 +237,30 @@ The most famous examples are *forward*search* and *recursive*feature*elimination
 : But the main drawbacks of wrapper methods is the sheer amount of models that needs to be trained.
 : It is computationally very expensive and is infeasible with large number of features.
 
+###############################################################
+* Embedded methods (1/3)
 
+Feature selection can also be achieved by the insights provided by some Machine Learning models like
+
+.html code/spacer.html
+.image imgs/Embedded.png _ 700
+.caption Embedded methods
+
+
+: Most of these are full fledged ML algorithms
+: - Linear/LASSO regression;
+: - tree based algorithms.
 
 ###############################################################
-* Machine Learning algorithms
-
-Feature selection can also be acheived by the insights provided by some Machine Learning models like
-
-- Linear/LASSO regression;
-- tree based algorithms.
-
-
-###############################################################
-* LASSO regression
+* Embedded methods (2/3) - LASSO regression
 
 LASSO adds an additional term to LR cost function.
-.html code/spacer.html
+#.html code/spacer.html
 .html code/spacer.html
 
 $$CF = \min_\theta \frac{1}{2} \sum_i \left( y_i - X_i\theta \right)^2 + \lambda ||\theta||_1$$
+
+it reduces the magnitude of coefficients, and penalizes irrelevant features.
 
 : least absolute shrinkage and selection operator
 : LASSO Linear Regression can be used for feature selections.
@@ -204,13 +271,35 @@ $$CF = \min_\theta \frac{1}{2} \sum_i \left( y_i - X_i\theta \right)^2 + \lambda
 : PROBLEM: coefficients go crazy when variables are highly collinear.
 
 ###############################################################
-* Tree based algorithms
+* Embedded methods (3/3) - Tree based algorithms
 
+Tree based models calculate feature importance to determine how to split the data.
+
+.image imgs/iris-two-deep.png 450 _
+.caption Decision tree on Iris dataset
+
+: The feature importance in tree based models are calculated based on Gini Index, Entropy or Chi-Square value.
+
+###############################################################
+* Back to our problem
+
+###############################################################
+* The code
+
+Implement an ensemble method that computes feature importances using different techniques.
 
 
 ###############################################################
-* Let's code!
+* Conclusion
 
+    (...) the processor and memory usage reduce; the data becomes more comprehensible and easier to study on.
+    In this study we have investigated the influence of feature selection (...) using fifteen real-life datasets. 
+    (...) 
+    The classification accuracy is improved up to 15.55%(..)
+
+    Karabuluta et al.
+    A comparative study on the effect of feature selection on classification accuracy
+    
 
 ###############################################################
 * Q/A

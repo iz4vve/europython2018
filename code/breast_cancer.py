@@ -11,6 +11,5 @@ print(f"Dataset contains {df.shape[0]} rows x {df.shape[1]} columns")
 # END OMIT
 df.columns = [f"X{i:02d}" for i in range(len(data['feature_names']))]
 
-from pprint import pprint
 print("Column names:")
-pprint(list(df)) 
+print(list(df)) 

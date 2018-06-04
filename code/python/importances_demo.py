@@ -63,9 +63,6 @@ class EnsembleFeatureSelector(BaseEstimator):
     __regressors = {
         "RandomForestRegressor": RandomForestRegressor,
         "DecisionTreeRegressor": DecisionTreeRegressor,
-        "Fdr": SelectFdr,
-        "Fpr": SelectFpr,
-        "Fwe": SelectFwe,
     }
     __classifiers = {
         "RandomForestClassifier": RandomForestClassifier,
@@ -73,6 +70,10 @@ class EnsembleFeatureSelector(BaseEstimator):
     }
     __others = {
         "VarianceThreshold": VarianceThreshold,
+    }
+
+    __requires_scaling = {
+        "VarianceThreshold"
     }
 
     __allowed_analyses = {
@@ -213,6 +214,8 @@ class EnsembleFeatureSelector(BaseEstimator):
                     (f"Training instance of {model.__class__}"
                      f" ({n}/{number_of_estimators})")
                 )
+            if model.__class__.__name__ in self.__requires_scaling:
+                X = (X - X.mean()) / (X.max() - X.min())
             model.fit(X, y)
 
             if not hasattr(model, "score"):
@@ -343,6 +346,9 @@ df.columns = columns=[f"X{i:02d}" for i in range(len(data['feature_names']))]
 def pretty_print_votes(votes):
     pass
 
+def pretty_print_importances(importances):
+    pass
+
 # START OMIT
 EFS = EnsembleFeatureSelector(
     analysis_type="generic_classification",
@@ -354,12 +360,15 @@ EFS = EnsembleFeatureSelector(
 EFS.fit(df, target)
 votes = EFS.cast_votes()
 
-print("\n" + "*" * 80)
-print(f"{len(votes)} features selected:")
 pretty_print_votes(votes)
+pretty_print_importances(EFS._importances)
 # END OMIT
 
+print("\n" + "*" * 80)
+print(f"{len(votes)} features selected:")
 for k, v in votes.most_common():
     print(f" * {k} -> {v} votes")
 
- 
+print("Feature importance")
+for k, v in EFS._importances.items():
+    print(f" * {k} -> {v}")

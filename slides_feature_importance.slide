@@ -410,6 +410,12 @@ Let's run the selector to see what features are important:
 
 .play code/python/importances_demo.py /START OMIT/,/END OMIT/
 
+
+* 
+But does it work?
+
+.play -edit code/python/demo.py /START OMIT/,/END OMIT/
+
 ###############################################################
 * Conclusion
 

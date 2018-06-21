@@ -1,0 +1,6 @@
+def __init__(
+        self, number_of_features=-1, analysis_type=None,
+        params=None, min_score=0.7, test_split=0
+    ):
+
+    ...a bunch of initializations here...

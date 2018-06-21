@@ -349,9 +349,11 @@ def pretty_print_votes(votes):
 def pretty_print_importances(importances):
     pass
 
+from numpy.random import seed
+seed(12345)
+
 EFS = EnsembleFeatureSelector(
     analysis_type="generic_classification",
-    verbose=1,
     names=df.columns,
     number_of_features=5
 )
@@ -367,20 +369,24 @@ from sklearn.linear_model import LogisticRegression
 logres = LogisticRegression()
 logres_important = LogisticRegression()
 
-from numpy.random import seed
 
 # START OMIT
 seed(12345)
 df_train, df_test, target_train, target_test = train_test_split(df, target)
+
 logres.fit(df_train, target_train)
 
 
 seed(12345)
-df_train_i, df_test_i, target_train_i, target_test_i = train_test_split(df[list(votes.keys())], target)
+df_train_i, df_test_i, target_train_i, target_test_i = train_test_split(
+    df[list(votes.keys())], target
+)
+
 logres_important.fit(df_train_i, target_train_i)
 
 # END OMIT
-
+print("*" * 80)
+print("Model scores:")
 print(
     f"Model score using {df_train.shape[1]} features: {logres.score(df_test, target_test):.4f}"
 )

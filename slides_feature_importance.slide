@@ -4,14 +4,10 @@ EuroPython 2018
 25 Jul 2018
 Tags: optum, europython, python, 2018
 
-Pietro Mascolo
+Pietro Mascolo - *@iz4vve*
 Sr. Data Scientist, Optum Ireland
 pietro_mascolo@optum.com
 
-Linkedin: *pmascolo*
-Twitter: *@iz4vve*
-Github: *iz4vve*
-Skype: *iz4vve*
 
 *Slides*and*code*: [[https://bit.ly/2J6xIzj]]
 
@@ -23,7 +19,7 @@ Skype: *iz4vve*
 ###############################################################
 * Contents
 
-#.background imgs/bg_optum_white.png
+# .background imgs/bg_optum_white.png
 
 I'm going to:
 
@@ -64,36 +60,61 @@ I'm going to:
 * Why are we here?
 
 ###############################################################
-* Our dragon
-.image imgs/dragon.png 300 _
-.caption Our very own dragon
+#* Our dragon...
 
-We have a dataset and a target.
+* Here be dragons: a little sad story...
+#.html code/html/spacer.html
+.image imgs/dragon.png 500 _
+#.caption Our very own dragon
 
-.play -edit code/python/breast_cancer.py /START OMIT/,/END OMIT/
 
 #: Introduce a dataset and a task (very big dataset - lots of features)
 #: Make sense of a big dataset (100s of features, no real information available)
-#: Who has ever ben in similar situation? 
+#: Who has ever been in similar situation? 
 #: What are those features?
 #: What features are important?
 #: Should we use all of them?
 #: What if we WANT to restrict the features that we use (big dataset, limited training time)
 
-###############################################################
-* 
 
+* The business
+
+#.html code/html/spacer.html
+.image imgs/bigdatabusiness.png 500 _
+
+* My (rightful) reaction
+
+#.html code/html/spacer.html
+.image imgs/bigdatayou.jpg 500 _
+
+* The outcome
 #.video imgs/crawl.mp4 video/mp4 500 _
-
 .html code/html/video.html
 
 #: That's A LOT of features for a raw dataset...
 #: How many are duplicates? How many related to each other?
 
+* Reality
+#.html code/html/spacer.html
+.image imgs/info.jpg 500 _
+
+###############################################################
+
+* What to do?
+
 
 
 ###############################################################
-* Which features?
+
+* A simpler situation
+.html code/html/spacer.html
+.html code/html/spacer.html
+.html code/html/spacer.html
+
+We have a dataset and a target.
+
+.play -edit code/python/breast_cancer.py /START OMIT/,/END OMIT/
+
 
 ###############################################################
 * Feature selection
@@ -104,15 +125,18 @@ Sometimes it's just too much...
 
 ###############################################################
 * Problems!
-- The scientist's opportunity to understand the data decreases.
-- Training time increases (sometimes exponentially).
-- Risk of overfitting increases.
+- Understanding of the data.
+- Training time.
+- Hardware requirements (sometimes).
+- Overfitting.
+- Decreased performance.
 
 .html code/html/better_way.html
 
 #: Sometimes there is too much stuff. We cannot understand all features' interactions and determine what is important and what is noise.
 #: Data preparation is made more difficult by the sheer amount of information.
 #: For most models, training time increases sharply with the number of features.
+#: Sometimes, if you have to keep data in memory, hardware requirements will be more taxing.
 #: Some features might be highly collinear (problematic for some algorithms) or they might represent the same thing as other features.
 #: simplification of models to make them easier to interpret by researchers/users,
 #: shorter training times,
@@ -123,9 +147,10 @@ Sometimes it's just too much...
 ###############################################################
 * Be mindful of your metrics!
 .image imgs/Anscombe.png 400 _
-.caption Anscombe quartet: all four datasets have almost the same descriptive statistics 
-.caption (means, variances, correlation coefficient, regression coefficients)
-.caption image taken from Wikipedia
+.caption Anscombe quartet
+#.caption All four datasets have almost the same descriptive statistics 
+#.caption (means, variances, correlation coefficient, regression coefficients)
+#.caption image taken from Wikipedia
 
 
 #: Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
@@ -139,8 +164,10 @@ Sometimes it's just too much...
 ###############################################################
 * Filter methods
 
-Filter Methods considers the relationship between features and the target variable to compute the importance of features.
+#: Filter Methods considers the relationship between features and the target variable to compute the importance of features.
 
+.html code/html/spacer.html
+.html code/html/spacer.html
 .html code/html/spacer.html
 .html code/html/spacer.html
 
@@ -195,8 +222,10 @@ Filter Methods considers the relationship between features and the target variab
 ###############################################################
 * Wrapper Methods
 
-Wrapper Methods generate models with a subsets of feature and measure their performance.
+#: Wrapper Methods generate models with a subsets of feature and measure their performance.
 
+.html code/html/spacer.html
+.html code/html/spacer.html
 .html code/html/spacer.html
 .image imgs/wrapper.png _ 700
 .caption Wrapper methods
@@ -204,7 +233,7 @@ Wrapper Methods generate models with a subsets of feature and measure their perf
 ###############################################################
 #* Wrapper Methods (2/2)
 
-#The most famous examples are *forward*search* and *recursive*feature*elimination*.
+#: The most famous examples are *forward*search* and *recursive*feature*elimination*.
 
 #.image imgs/wrapper_methods.png 400 _
 #.caption Forward Search (left) and Recursive Feature Elimination (right) - [[https://towardsdatascience.com/why-how-and-when-to-apply-feature-selection-e9c69adfabf2][image source]]
@@ -230,8 +259,10 @@ Wrapper Methods generate models with a subsets of feature and measure their perf
 ###############################################################
 * Embedded methods
 
-Feature selection can also be achieved by the insights provided by some Machine Learning models like
+#: Feature selection can also be achieved by the insights provided by some Machine Learning models like
 
+.html code/html/spacer.html
+.html code/html/spacer.html
 .html code/html/spacer.html
 .image imgs/Embedded.png _ 700
 .caption Embedded methods
@@ -284,7 +315,8 @@ Let's implement a (simplistic,) `general` ensemble method that computes feature 
 ###############################################################
 * The implementation
 
-
+.html code/html/spacer.html
+.html code/html/spacer.html
 .html code/html/spacer.html
 
   CAVEAT:
@@ -303,6 +335,7 @@ Let's implement a (simplistic,) `general` ensemble method that computes feature 
 * The code
 
 We start be importing a bunch of things...
+.html code/html/spacer.html
 
   import numpy as np
   import pandas as pd
@@ -338,34 +371,40 @@ We start be importing a bunch of things...
         "generic_regression": ["__regressors", "__others"]
     }
 
+#: this will define the type of problem, and the models to be used.
+#: the current implementation allows it to be extended, provided the models
+#: interface is compatible with sklearn models
+
 ###############################################################
 * ...and we initialise it
+.html code/html/spacer.html
+.html code/html/spacer.html
 
-  def __init__(
-        self, number_of_features=-1, analysis_type=None,
-        params=None, min_score=0.7, test_split=0
-    ):
-        if params is None:
-            params = dict()
-        if analysis_type not in self.__allowed_analyses:
-            raise RuntimeError
-        if not 0 <= test_split < 1 or not 0 <= min_score < 1:
-            raise RuntimeError("test_split and min_score must be in [0; 1[")
-
-        self._min_score = min_score
-        self._test_split = test_split
-
-        self.analysis_type = analysis_type
-
-        # self._estimators = dict()
-        self._importances = dict()
-        self.n_features = number_of_features
-
-        self._active_estimators = dict()
-        self._setup_models(params)
+.code -edit code/pseudocode/pseudo
+  
+#if params is None:
+#    params = dict()
+#if analysis_type not in self.__allowed_analyses:
+#    raise RuntimeError
+#if not 0 <= test_split < 1 or not 0 <= min_score < 1:
+#    raise RuntimeError("test_split and min_score must be in [0; 1[")
+#
+#self._min_score = min_score
+#self._test_split = test_split
+#
+#self.analysis_type = analysis_type
+#
+# self._estimators = dict()
+#self._importances = dict()
+#self.n_features = number_of_features
+#
+#self._active_estimators = dict()
+#self._setup_models(params)
 
 ###############################################################
 * Models instantiation
+.html code/html/spacer.html
+.html code/html/spacer.html
 
     def _setup_models(self, params):
 
@@ -381,16 +420,20 @@ We start be importing a bunch of things...
 ###############################################################
 * Fitting
 
+.html code/html/spacer.html
+.html code/html/spacer.html
 .code code/python/fitting.py
 
 ###############################################################
 * Feature importance by model
-
+.html code/html/spacer.html
 .code code/python/importance.py
 
 ###############################################################
 * Voting
 
+.html code/html/spacer.html
+.html code/html/spacer.html
 .code code/python/votes.py
 
 ###############################################################
@@ -401,39 +444,41 @@ We start be importing a bunch of things...
 ###############################################################
 * Let's see it in action!
 
-* 
-Remember our dataset?
+* Remember our dataset?
 
 .play -edit code/python/breast_cancer.py /START OMIT/,/END OMIT/
-
+.html code/html/spacer.html
 Let's run the selector to see what features are important:
 
 .play code/python/importances_demo.py /START OMIT/,/END OMIT/
 
 
-* 
-But does it work?
-
+* But does it work?
+.html code/html/spacer.html
+.html code/html/spacer.html
 .play -edit code/python/demo.py /START OMIT/,/END OMIT/
+
+#: in this case we were even lucky: we are using about a third of the features
+#: and we are getting comparable results (better in this case).
+#: I ran a few tests on this dataset without setting the seeds and the accuracy of the model
+#: is always comparable (within 4-5 percentage points)
 
 ###############################################################
 * Conclusion
 
-    (...) the processor and memory usage reduce; the data becomes more comprehensible and easier to study on.
-    In this study we have investigated the influence of feature selection (...) using fifteen real-life datasets. 
-    (...) 
-    The classification accuracy is improved up to 15.55%(..)
-
-    Karabuluta et al.
-    A comparative study on the effect of feature selection on classification accuracy
-
-#.html code/html/spacer.html
 *Feature*selection*:
 
-- simplifies the model by reducing the number of parameters.
-- decreases the training time.
-- reduces overfilling by enhancing generalization.
+- simplifies models.
+- reduces training time.
+- reduces overfitting by enhancing generalization.
 - avoids the curse of dimensionality.
+- makes data more understandable.
+- removes noise.
+
+  Things should be made as simple as possible, but not simpler...
+
+
+                                                                                                A. Einstein
     
 
 ###############################################################

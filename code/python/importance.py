@@ -8,10 +8,8 @@
             return [(n, i) for n, i in enumerate(model.scores_)]
         return list()
 
+
     def _get_importances(self):
-        """
-        Calculates importance for each model in _alive_estimators
-        """
         for key in self._alive_estimators:
             importances = self._calculate_importance(self._active_estimators[key], self.names)
             

@@ -1,7 +1,7 @@
 #+theme=optum
 Good features beat algorithms
 EuroPython 2018
-25 Jul 2018
+27 Jul 2018
 Tags: optum, europython, python, 2018
 
 Pietro Mascolo - *@iz4vve*
@@ -24,10 +24,10 @@ pietro_mascolo@optum.com
 I'm going to:
 
 - introduce myself;
-- talk about data;
-- talk about features;
-- make the mandatory `XKCD` reference;
-- show you some code.
+- tell a story about a dragon;
+- show you some gifs and memes;
+- show you some code;
+- build a simple ensemble feature selector.
 
 #: I want to make sure that you're all in the right room :)
 #: An intermediate understanding of statistics and data handling will be VERY useful in following the talk.
@@ -57,12 +57,11 @@ I'm going to:
 #: If anybody is interested, we are hiring ;)
 
 ###############################################################
-* Why are we here?
+* A little sad story...
 
 ###############################################################
-#* Our dragon...
 
-* Here be dragons: a little sad story...
+* Here be dragons
 #.html code/html/spacer.html
 .image imgs/dragon.png 500 _
 #.caption Our very own dragon
@@ -98,26 +97,11 @@ I'm going to:
 #.html code/html/spacer.html
 .image imgs/info.jpg 500 _
 
-###############################################################
-
-* What to do?
 
 
 
 ###############################################################
-
-* A simpler situation
-.html code/html/spacer.html
-.html code/html/spacer.html
-.html code/html/spacer.html
-
-We have a dataset and a target.
-
-.play -edit code/python/breast_cancer.py /START OMIT/,/END OMIT/
-
-
-###############################################################
-* Feature selection
+* I can't handle this!
 
 Sometimes it's just too much...
 
@@ -130,8 +114,10 @@ Sometimes it's just too much...
 - Hardware requirements (sometimes).
 - Overfitting.
 - Decreased performance.
+- Leaks.
+- ...
 
-.html code/html/better_way.html
+#.html code/html/better_way.html
 
 #: Sometimes there is too much stuff. We cannot understand all features' interactions and determine what is important and what is noise.
 #: Data preparation is made more difficult by the sheer amount of information.
@@ -143,6 +129,24 @@ Sometimes it's just too much...
 #: to avoid the curse of dimensionality,
 #: enhanced generalization by reducing overfitting
 
+
+###############################################################
+
+* Let's go simpler: it's just a talk after all...
+
+.html code/html/spacer.html
+.html code/html/spacer.html
+.html code/html/spacer.html
+
+We have a dataset and a target.
+
+.play -edit code/python/breast_cancer.py /START OMIT/,/END OMIT/
+
+
+###############################################################
+
+
+* Enter feature selection
 
 ###############################################################
 * Be mindful of your metrics!
@@ -167,12 +171,10 @@ Sometimes it's just too much...
 #: Filter Methods considers the relationship between features and the target variable to compute the importance of features.
 
 .html code/html/spacer.html
-.html code/html/spacer.html
-.html code/html/spacer.html
-.html code/html/spacer.html
 
-.image imgs/filter.png _ 750 
-.caption Filter methods
+#.image imgs/filter.png _ 750
+.image imgs/selection.png _ 700
+
 
 #: - Pearson correlation;
 #: - F Test;
@@ -224,11 +226,7 @@ Sometimes it's just too much...
 
 #: Wrapper Methods generate models with a subsets of feature and measure their performance.
 
-.html code/html/spacer.html
-.html code/html/spacer.html
-.html code/html/spacer.html
-.image imgs/wrapper.png _ 700
-.caption Wrapper methods
+.image imgs/target.jpg _ 600
 
 ###############################################################
 #* Wrapper Methods (2/2)
@@ -261,11 +259,10 @@ Sometimes it's just too much...
 
 #: Feature selection can also be achieved by the insights provided by some Machine Learning models like
 
-.html code/html/spacer.html
-.html code/html/spacer.html
-.html code/html/spacer.html
-.image imgs/Embedded.png _ 700
-.caption Embedded methods
+
+#.image imgs/Embedded.png _ 700
+.image imgs/powerful.jpg _ 700
+#.caption Embedded methods
 
 
 #: Most of these are full fledged ML algorithms
@@ -302,18 +299,20 @@ Sometimes it's just too much...
 #: The feature importance in tree based models are calculated based on Gini Index, Entropy or Chi-Square value.
 
 ###############################################################
-* Back to our problem
+* Back to our dragon
 
 ###############################################################
 * Why are we here again?
 
-Let's implement a (simplistic,) `general` ensemble method that computes feature importances using different techniques.
+#Let's implement a (simplistic,) `general` ensemble method that computes feature importances using different techniques.
 
-.image imgs/the_general_problem.png _ 700
-.caption 'I said GENERAL!' - xkcd 974
+.html code/html/spacer.html
+.image imgs/dragongif.gif _ 900
+#imgs/the_general_problem.png _ 700
+#.caption 'I said GENERAL!' - xkcd 974
 
 ###############################################################
-* The implementation
+* The fight
 
 .html code/html/spacer.html
 .html code/html/spacer.html
@@ -475,7 +474,13 @@ Let's run the selector to see what features are important:
 - makes data more understandable.
 - removes noise.
 
-  Things should be made as simple as possible, but not simpler...
+* 
+
+.html code/html/spacer.html
+.html code/html/spacer.html
+
+
+  Things should be as simple as possible, but not simpler...
 
 
                                                                                                 A. Einstein
@@ -486,6 +491,6 @@ Let's run the selector to see what features are important:
 .image imgs/qa.png 500 _
 
 ###############################################################
-* Thanks for your attention!
+#* Thanks for your attention!
 
-.html code/html/thanks.html
+#.html code/html/thanks.html

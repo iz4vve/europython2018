@@ -369,21 +369,12 @@ from sklearn.linear_model import LogisticRegression
 logres = LogisticRegression()
 logres_important = LogisticRegression()
 
-
-# START OMIT
 seed(12345)
+# START OMIT
 df_train, df_test, target_train, target_test = train_test_split(df, target)
 
 logres.fit(df_train, target_train)
-
-
-seed(12345)
-df_train_i, df_test_i, target_train_i, target_test_i = train_test_split(
-    df[list(votes.keys())], target
-)
-
-logres_important.fit(df_train_i, target_train_i)
-
+logres_important.fit(df_train[list(votes.keys())], target_train)
 # END OMIT
 print("*" * 80)
 print("Model scores:")
@@ -392,6 +383,6 @@ print(
 )
 
 print(
-    (f"Model score using {df_train_i.shape[1]} features:"
-     f" {logres_important.score(df_test_i, target_test_i):.4f}")
+    (f"Model score using {df_train[list(votes.keys())].shape[1]} features:"
+     f" {logres_important.score(df_test[list(votes.keys())], target_test):.4f}")
 )

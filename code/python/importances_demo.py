@@ -349,6 +349,8 @@ def pretty_print_votes(votes):
 def pretty_print_importances(importances):
     pass
 
+from numpy.random import seed
+seed(12345)
 # START OMIT
 EFS = EnsembleFeatureSelector(
     analysis_type="generic_classification",

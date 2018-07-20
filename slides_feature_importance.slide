@@ -4,9 +4,10 @@ EuroPython 2018
 27 Jul 2018
 Tags: optum, europython, python, 2018
 
-Pietro Mascolo - *@iz4vve*
+Pietro Mascolo
 Sr. Data Scientist, Optum Ireland
 pietro_mascolo@optum.com
+@iz4vve
 
 
 *Slides*and*code*: [[https://bit.ly/2J6xIzj]]
@@ -14,7 +15,7 @@ pietro_mascolo@optum.com
 ###############################################################
 #* Introduction
 
-#: Let's spend a few minutes to get to know each other.
+: Let's spend a few minutes to get to know each other.
 
 ###############################################################
 * Contents
@@ -24,13 +25,13 @@ pietro_mascolo@optum.com
 I'm going to:
 
 - introduce myself;
-- tell a story about a dragon;
+- tell a story;
 - show you some gifs and memes;
 - show you some code;
-- build a simple ensemble feature selector.
+- show you some results.
 
-#: I want to make sure that you're all in the right room :)
-#: An intermediate understanding of statistics and data handling will be VERY useful in following the talk.
+: I want to make sure that you're all in the right room :)
+: An intermediate understanding of statistics and data handling will be VERY useful in following the talk.
 
 ###############################################################
 * Me
@@ -39,7 +40,7 @@ I'm going to:
 - Physicist;
 - *Python* / *Go* enthusiast;
 - *Kotlin* / Scala practitioner;
-- Ham Radio Operator (*EI/IZ4VVE*);
+- Ham Radio Operator (*IZ4VVE*);
 - Mountain hiker and Karateka;
 - Amateur Photographer;
 - ...
@@ -51,65 +52,66 @@ I'm going to:
 .image imgs/optum-mission.png 500 _
 .caption [[http://www.optum.com][optum.com]], [[http://www.unitedhealthgroup.com][unitedhealthgroup.com]]
 
-#: Does anybody know of Optum/UHG?
-#: This is actually old: we are now ranked 5th on Fortune 500.
-#: We recently surpassed 300K employees worldwide, with presence of ~1200 people in Ireland.
-#: If anybody is interested, we are hiring ;)
+: Does anybody know of Optum/UHG?
+: This is actually old: we are now ranked 5th on Fortune 500.
+: We recently surpassed 300K employees worldwide, with presence of ~1200 people in Ireland.
+: If anybody is interested, we are hiring ;)
 
 ###############################################################
-* A little sad story...
+* Once upon a time, a brave knight...
 
 ###############################################################
 
-* Here be dragons
-#.html code/html/spacer.html
+* 
+
+.html code/html/spacer.html
 .image imgs/dragon.png 500 _
-#.caption Our very own dragon
 
 
-#: Introduce a dataset and a task (very big dataset - lots of features)
-#: Make sense of a big dataset (100s of features, no real information available)
-#: Who has ever been in similar situation? 
-#: What are those features?
-#: What features are important?
-#: Should we use all of them?
-#: What if we WANT to restrict the features that we use (big dataset, limited training time)
+: Introduce a dataset and a task (very big dataset - lots of features)
+: Make sense of a big dataset (100s of features, no real information available)
+: Who has ever been in similar situation? 
+: What are those features?
+: What features are important?
+: Should we use all of them?
+: What if we WANT to restrict the features that we use (big dataset, limited training time)
 
 
-* The business
+* The evil overlords
 
 #.html code/html/spacer.html
 .image imgs/bigdatabusiness.png 500 _
 
-* My (rightful) reaction
+* The knight's reaction
+#My (rightful) reaction
 
-#.html code/html/spacer.html
+.html code/html/spacer.html
 .image imgs/bigdatayou.jpg 500 _
 
 * The outcome
-#.video imgs/crawl.mp4 video/mp4 500 _
-.html code/html/video.html
+.html code/html/spacer.html
 
-#: That's A LOT of features for a raw dataset...
-#: How many are duplicates? How many related to each other?
+.video imgs/crawl.mp4 video/mp4 500 _
+#.html code/html/video.html
+
+: That's A LOT of features for a raw dataset...
+: How many are duplicates? How many related to each other?
 
 * Reality
-#.html code/html/spacer.html
+.html code/html/spacer.html
 .image imgs/info.jpg 500 _
 
 
-
-
 ###############################################################
-* I can't handle this!
+* It's just too much...
 
-Sometimes it's just too much...
-
-.image imgs/bigdatadashboard.jpg 400 _
+.html code/html/spacer.html
+.image imgs/bigdatadashboard.jpg 450 _
 
 ###############################################################
 * Problems!
-- Understanding of the data.
+.html code/html/spacer.html
+- Understanding the data.
 - Training time.
 - Hardware requirements (sometimes).
 - Overfitting.
@@ -117,22 +119,20 @@ Sometimes it's just too much...
 - Leaks.
 - ...
 
-#.html code/html/better_way.html
-
-#: Sometimes there is too much stuff. We cannot understand all features' interactions and determine what is important and what is noise.
-#: Data preparation is made more difficult by the sheer amount of information.
-#: For most models, training time increases sharply with the number of features.
-#: Sometimes, if you have to keep data in memory, hardware requirements will be more taxing.
-#: Some features might be highly collinear (problematic for some algorithms) or they might represent the same thing as other features.
-#: simplification of models to make them easier to interpret by researchers/users,
-#: shorter training times,
-#: to avoid the curse of dimensionality,
-#: enhanced generalization by reducing overfitting
+: Sometimes there is too much stuff. We cannot understand all features' interactions and determine what is important and what is noise.
+: Data preparation is made more difficult by the sheer amount of information.
+: For most models, training time increases sharply with the number of features.
+: Sometimes, if you have to keep data in memory, hardware requirements will be more taxing.
+: Some features might be highly collinear (problematic for some algorithms) or they might represent the same thing as other features.
+: simplification of models to make them easier to interpret by researchers/users,
+: shorter training times,
+: to avoid the curse of dimensionality,
+: enhanced generalization by reducing overfitting
 
 
 ###############################################################
 
-* Let's go simpler: it's just a talk after all...
+* Let's go simpler: this is just a talk after all...
 
 .html code/html/spacer.html
 .html code/html/spacer.html
@@ -142,14 +142,13 @@ We have a dataset and a target.
 
 .play -edit code/python/breast_cancer.py /START OMIT/,/END OMIT/
 
-
 ###############################################################
 
-
-* Enter feature selection
+* Which features do we choose? And how do we choose them?
 
 ###############################################################
 * Be mindful of your metrics!
+.html code/html/spacer.html
 .image imgs/Anscombe.png 400 _
 .caption Anscombe quartet
 #.caption All four datasets have almost the same descriptive statistics 
@@ -157,107 +156,105 @@ We have a dataset and a target.
 #.caption image taken from Wikipedia
 
 
-#: Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
-#: There is no free lunch... but some lunches can be VERY expensive
-#: Simple statistics can be very helpful in determining the type of dataset and the relationships between variables.
-#: However we should not trust them blindly.
-#: In this case we would be fooled into thinking the datasets are VERY similar when in fact they are quite different.
-#: Correlation, in particular, fails spectacularly here because of its inherent inability to capture non-linear relationships.
-#: We should definitely use summary statistics, but we should also maintain a healthy dose of skepticism.
+: Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
+: There is no free lunch... but some lunches can be VERY expensive
+: Simple statistics can be very helpful in determining the type of dataset and the relationships between variables.
+: However we should not trust them blindly.
+: In this case we would be fooled into thinking the datasets are VERY similar when in fact they are quite different.
+: Correlation, in particular, fails spectacularly here because of its inherent inability to capture non-linear relationships.
+: We should definitely use summary statistics, but we should also maintain a healthy dose of skepticism.
 
 ###############################################################
 * Filter methods
 
-#: Filter Methods considers the relationship between features and the target variable to compute the importance of features.
+: Filter Methods considers the relationship between features and the target variable to compute the importance of features.
 
 .html code/html/spacer.html
-
-#.image imgs/filter.png _ 750
 .image imgs/selection.png _ 700
 
 
-#: - Pearson correlation;
-#: - F Test;
-#: - Mutual Information;
-#: - Variance Threshold;
-#: - LDA;
-#: - ANOVA;
-#: - Χ-square;
-#: - Granger causality;
+: - Pearson correlation;
+: - F Test;
+: - Mutual Information;
+: - Variance Threshold;
+: - LDA;
+: - ANOVA;
+: - Χ-square;
+: - Granger causality;
 
-#: F TEST
-#: F Test is a statistical test used to compare between models and check if the difference is significant.
-#: F-Test does a hypothesis testing model X and Y where X is a model created by just a constant and Y is the model created by a constant and a feature.
-#: Least Square Errors of the models are verified to be significant
-#: Useful to know importance of each feature.
-#: There are some drawbacks of using F-Test to select your features.
-#: - F-Test checks for and only captures linear relationships between features and labels. (remember correlation?)
-#: - A highly correlated feature is given higher score and less correlated features are given lower score.
+: F TEST
+: F Test is a statistical test used to compare between models and check if the difference is significant.
+: F-Test does a hypothesis testing model X and Y where X is a model created by just a constant and Y is the model created by a constant and a feature.
+: Least Square Errors of the models are verified to be significant
+: Useful to know importance of each feature.
+: There are some drawbacks of using F-Test to select your features.
+: - F-Test checks for and only captures linear relationships between features and labels. (remember correlation?)
+: - A highly correlated feature is given higher score and less correlated features are given lower score.
 
-#: MUTUAL INFORMATION
-#: Mutual Information  measures the dependence of one variable to another.
-#: If X and Y are independent, then no information about Y can be obtained by knowing X or vice versa. Hence their mutual information is 0.
-#: If X is a deterministic function of Y, then we can determine X from Y and Y from X with mutual information 1.
-#: We can select our features by ranking their mutual information with the target variable.
-#: Advantage of using mutual information over F-Test is, it does well with the non-linear relationship between feature and target variable.
-#: Sklearn offers feature selection with Mutual Information for regression and classification tasks.
+: MUTUAL INFORMATION
+: Mutual Information  measures the dependence of one variable to another.
+: If X and Y are independent, then no information about Y can be obtained by knowing X or vice versa. Hence their mutual information is 0.
+: If X is a deterministic function of Y, then we can determine X from Y and Y from X with mutual information 1.
+: We can select our features by ranking their mutual information with the target variable.
+: Advantage of using mutual information over F-Test is, it does well with the non-linear relationship between feature and target variable.
+: Sklearn offers feature selection with Mutual Information for regression and classification tasks.
 
-#: VARIANCE THRESHOLD
-#: The idea is when a feature doesn’t vary much within itself, it generally has very little predictive power.
-#: Variance Threshold doesn’t consider the relationship of features with the target variable.
+: VARIANCE THRESHOLD
+: The idea is when a feature doesn’t vary much within itself, it generally has very little predictive power.
+: Variance Threshold doesn’t consider the relationship of features with the target variable.
 
-#: LDA
-#: Linear discriminant analysis is used to find a linear combination of
-#: features that characterizes or separates two or more classes (or levels) of a categorical variable.
+: LDA
+: Linear discriminant analysis is used to find a linear combination of
+: features that characterizes or separates two or more classes (or levels) of a categorical variable.
 
-#: ANOVA
-#: ANOVA stands for Analysis of variance. 
-#: It is similar to LDA except for the fact that it is operated using one or more
-#: categorical independent features and one continuous dependent feature.
-#: It provides a statistical test of whether the means of several groups are equal or not.
+: ANOVA
+: ANOVA stands for Analysis of variance. 
+: It is similar to LDA except for the fact that it is operated using one or more
+: categorical independent features and one continuous dependent feature.
+: It provides a statistical test of whether the means of several groups are equal or not.
 
-#: CHI squared
-#:  It is a is a statistical test applied to the groups of categorical
-#: features to evaluate the likelihood of correlation or association between them
-#: using their frequency distribution.
+: CHI squared
+:  It is a is a statistical test applied to the groups of categorical
+: features to evaluate the likelihood of correlation or association between them
+: using their frequency distribution.
 
 ###############################################################
 * Wrapper Methods
 
-#: Wrapper Methods generate models with a subsets of feature and measure their performance.
+: Wrapper Methods generate models with a subsets of feature and measure their performance.
 
 .image imgs/target.jpg _ 600
 
 ###############################################################
 #* Wrapper Methods (2/2)
 
-#: The most famous examples are *forward*search* and *recursive*feature*elimination*.
+: The most famous examples are *forward*search* and *recursive*feature*elimination*.
 
 #.image imgs/wrapper_methods.png 400 _
 #.caption Forward Search (left) and Recursive Feature Elimination (right) - [[https://towardsdatascience.com/why-how-and-when-to-apply-feature-selection-e9c69adfabf2][image source]]
 
-#: FORWARD SEARCH
-#: This method allows you to search for the best feature w.r.t model performance and add them to your feature subset one after the other.
-#: For data with n features,
-#: ->On first round ‘n’ models are created with individual feature and the best predictive feature is selected.
-#: ->On second round, ‘n-1’ models are created with each feature and the previously selected feature.
-#: ->This is repeated till a best subset of ‘m’ features are selected.
+: FORWARD SEARCH
+: This method allows you to search for the best feature w.r.t model performance and add them to your feature subset one after the other.
+: For data with n features,
+: ->On first round ‘n’ models are created with individual feature and the best predictive feature is selected.
+: ->On second round, ‘n-1’ models are created with each feature and the previously selected feature.
+: ->This is repeated till a best subset of ‘m’ features are selected.
 
-#: RECURSIVE FEATURE ELIMINATION
-#: This method eliminates the worst performin feature at each stage
-#: For data with n features,
-#: ->On first round ‘n-1’ models are created with combination of all features except one. The least performing feature is removed
-#: -> On second round ‘n-2’ models are created by removing another feature.
-#: Wrapper Methods promises you a best set of features with a extensive greedy search.
+: RECURSIVE FEATURE ELIMINATION
+: This method eliminates the worst performin feature at each stage
+: For data with n features,
+: ->On first round ‘n-1’ models are created with combination of all features except one. The least performing feature is removed
+: -> On second round ‘n-2’ models are created by removing another feature.
+: Wrapper Methods promises you a best set of features with a extensive greedy search.
 
 
-#: But the main drawbacks of wrapper methods is the sheer amount of models that needs to be trained.
-#: It is computationally very expensive and is infeasible with large number of features.
+: But the main drawbacks of wrapper methods is the sheer amount of models that needs to be trained.
+: It is computationally very expensive and is infeasible with large number of features.
 
 ###############################################################
 * Embedded methods
 
-#: Feature selection can also be achieved by the insights provided by some Machine Learning models like
+: Feature selection can also be achieved by the insights provided by some Machine Learning models like
 
 
 #.image imgs/Embedded.png _ 700
@@ -265,9 +262,9 @@ We have a dataset and a target.
 #.caption Embedded methods
 
 
-#: Most of these are full fledged ML algorithms
-#: - Linear/LASSO regression;
-#: - tree based algorithms.
+: Most of these are full fledged ML algorithms
+: - Linear/LASSO regression;
+: - tree based algorithms.
 
 ###############################################################
 #* Embedded methods (2/3) - LASSO regression
@@ -280,13 +277,13 @@ We have a dataset and a target.
 
 #it reduces the magnitude of coefficients, and penalizes irrelevant features.
 
-#: least absolute shrinkage and selection operator
-#: LASSO Linear Regression can be used for feature selections.
-#: Lasso Regression is performed by adding an extra term to the cost function of Linear Regression.
-#: This apart from preventing overfitting also reduces the coefficients of less important features to zero.
+: least absolute shrinkage and selection operator
+: LASSO Linear Regression can be used for feature selections.
+: Lasso Regression is performed by adding an extra term to the cost function of Linear Regression.
+: This apart from preventing overfitting also reduces the coefficients of less important features to zero.
 
-#: Some people use directly the coefficient of linear regression. Not as good.
-#: PROBLEM: coefficients go crazy when variables are highly collinear.
+: Some people use directly the coefficient of linear regression. Not as good.
+: PROBLEM: coefficients go crazy when variables are highly collinear.
 
 ###############################################################
 #* Embedded methods (3/3) - Tree based algorithms
@@ -296,7 +293,7 @@ We have a dataset and a target.
 #.image imgs/iris-two-deep.png 350 _
 #.caption Decision tree on Iris dataset
 
-#: The feature importance in tree based models are calculated based on Gini Index, Entropy or Chi-Square value.
+: The feature importance in tree based models are calculated based on Gini Index, Entropy or Chi-Square value.
 
 ###############################################################
 * Back to our dragon
@@ -325,15 +322,15 @@ We have a dataset and a target.
   DO NOT use the code as is: It will NOT work properly...
 
 
-#: We wanted an ensemble, as generic as possible.
-#: It didn't need to generalise to all possible cases: we had a specific situation in mind.
-#: It had to be easily extensible.
-#: It had to average out the results of the single feature selectors based on their performance (when available)
+: We wanted an ensemble, as generic as possible.
+: It didn't need to generalise to all possible cases: we had a specific situation in mind.
+: It had to be easily extensible.
+: It had to average out the results of the single feature selectors based on their performance (when available)
 
 ###############################################################
 * The code
 
-We start be importing a bunch of things...
+We start by importing a bunch of things...
 .html code/html/spacer.html
 
   import numpy as np
@@ -370,9 +367,9 @@ We start be importing a bunch of things...
         "generic_regression": ["__regressors", "__others"]
     }
 
-#: this will define the type of problem, and the models to be used.
-#: the current implementation allows it to be extended, provided the models
-#: interface is compatible with sklearn models
+: this will define the type of problem, and the models to be used.
+: the current implementation allows it to be extended, provided the models
+: interface is compatible with sklearn models
 
 ###############################################################
 * ...and we initialise it
@@ -457,10 +454,10 @@ Let's run the selector to see what features are important:
 .html code/html/spacer.html
 .play -edit code/python/demo.py /START OMIT/,/END OMIT/
 
-#: in this case we were even lucky: we are using about a third of the features
-#: and we are getting comparable results (better in this case).
-#: I ran a few tests on this dataset without setting the seeds and the accuracy of the model
-#: is always comparable (within 4-5 percentage points)
+: in this case we were even lucky: we are using about a third of the features
+: and we are getting comparable results (better in this case).
+: I ran a few tests on this dataset without setting the seeds and the accuracy of the model
+: is always comparable (within 4-5 percentage points)
 
 ###############################################################
 * Conclusion

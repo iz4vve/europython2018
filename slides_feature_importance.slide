@@ -1,7 +1,7 @@
 #+theme=optum
 Good features beat algorithms
-EuroPython 2018
-27 Jul 2018
+Data Science and Engineering meetup
+21 Jul 2018
 Tags: optum, europython, python, 2018
 
 Pietro Mascolo
@@ -18,11 +18,12 @@ pietro_mascolo@optum.com
 : Let's spend a few minutes to get to know each other.
 
 ###############################################################
-* Contents
+#* Contents
+* I'm going to:
 
-# .background imgs/bg_optum_white.png
+.background imgs/bg_optum_white.png
 
-I'm going to:
+.html code/html/spacer.html
 
 - introduce myself;
 - tell a story;
@@ -35,6 +36,8 @@ I'm going to:
 
 ###############################################################
 * Me
+
+.background imgs/bg_optum_white.png
 
 .image imgs/just-me.png 180 _
 - Physicist;
@@ -225,13 +228,7 @@ We have a dataset and a target.
 
 .image imgs/target.jpg _ 600
 
-###############################################################
-#* Wrapper Methods (2/2)
-
 : The most famous examples are *forward*search* and *recursive*feature*elimination*.
-
-#.image imgs/wrapper_methods.png 400 _
-#.caption Forward Search (left) and Recursive Feature Elimination (right) - [[https://towardsdatascience.com/why-how-and-when-to-apply-feature-selection-e9c69adfabf2][image source]]
 
 : FORWARD SEARCH
 : This method allows you to search for the best feature w.r.t model performance and add them to your feature subset one after the other.
@@ -254,14 +251,14 @@ We have a dataset and a target.
 ###############################################################
 * Embedded methods
 
-: Feature selection can also be achieved by the insights provided by some Machine Learning models like
-
 
 #.image imgs/Embedded.png _ 700
-.image imgs/powerful.jpg _ 700
+#.image imgs/powerful.jpg _ 700
+.image imgs/fusion.jpg _ 700
 #.caption Embedded methods
 
 
+: they have features from both worlds. They can discriminate single features within a subset.
 : Most of these are full fledged ML algorithms
 : - Linear/LASSO regression;
 : - tree based algorithms.
@@ -459,10 +456,12 @@ Let's run the selector to see what features are important:
 : I ran a few tests on this dataset without setting the seeds and the accuracy of the model
 : is always comparable (within 4-5 percentage points)
 
-###############################################################
-* Conclusion
+: in conclusion...
 
-*Feature*selection*:
+###############################################################
+* Feature selection:
+
+.html code/html/spacer.html
 
 - simplifies models.
 - reduces training time.

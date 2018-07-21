@@ -1,7 +1,7 @@
 #+theme=optum
 Good features beat algorithms
-Data Science and Engineering meetup
-21 Jul 2018
+Europython 2018
+27 Jul 2018
 Tags: optum, europython, python, 2018
 
 Pietro Mascolo
@@ -85,31 +85,28 @@ pietro_mascolo@optum.com
 #.html code/html/spacer.html
 .image imgs/bigdatabusiness.png 500 _
 
-* The knight's reaction
-#My (rightful) reaction
 
-.html code/html/spacer.html
-.image imgs/bigdatayou.jpg 500 _
-
-* The outcome
+* The dragon
 .html code/html/spacer.html
 
-.video imgs/crawl.mp4 video/mp4 500 _
-#.html code/html/video.html
+#.video imgs/crawl.mp4 video/mp4 500 _
+.html code/html/video.html
 
 : That's A LOT of features for a raw dataset...
 : How many are duplicates? How many related to each other?
-
-* Reality
-.html code/html/spacer.html
-.image imgs/info.jpg 500 _
-
 
 ###############################################################
 * It's just too much...
 
 .html code/html/spacer.html
 .image imgs/bigdatadashboard.jpg 450 _
+
+###############################################################
+
+* Reality
+.html code/html/spacer.html
+.image imgs/info.jpg 500 _
+
 
 ###############################################################
 * Problems!
@@ -263,17 +260,6 @@ We have a dataset and a target.
 : - Linear/LASSO regression;
 : - tree based algorithms.
 
-###############################################################
-#* Embedded methods (2/3) - LASSO regression
-
-#LASSO adds an additional term to LR cost function.
-#.html code/html/spacer.html
-#.html code/html/spacer.html
-
-#$$CF = \min_\theta \frac{1}{2} \sum_i \left( y_i - X_i\theta \right)^2 + \lambda ||\theta||_1$$
-
-#it reduces the magnitude of coefficients, and penalizes irrelevant features.
-
 : least absolute shrinkage and selection operator
 : LASSO Linear Regression can be used for feature selections.
 : Lasso Regression is performed by adding an extra term to the cost function of Linear Regression.
@@ -283,27 +269,16 @@ We have a dataset and a target.
 : PROBLEM: coefficients go crazy when variables are highly collinear.
 
 ###############################################################
-#* Embedded methods (3/3) - Tree based algorithms
-
-#Tree based models calculate feature importance to determine how to split the data.
-
-#.image imgs/iris-two-deep.png 350 _
-#.caption Decision tree on Iris dataset
-
-: The feature importance in tree based models are calculated based on Gini Index, Entropy or Chi-Square value.
-
-###############################################################
-* Back to our dragon
-
-###############################################################
 * Why are we here again?
 
-#Let's implement a (simplistic,) `general` ensemble method that computes feature importances using different techniques.
+* 
 
 .html code/html/spacer.html
+.html code/html/spacer.html
 .image imgs/dragongif.gif _ 900
-#imgs/the_general_problem.png _ 700
-#.caption 'I said GENERAL!' - xkcd 974
+
+: Let's implement a (simplistic,) `general` ensemble method that computes feature importances using different techniques.
+
 
 ###############################################################
 * The fight
@@ -374,25 +349,6 @@ We start by importing a bunch of things...
 .html code/html/spacer.html
 
 .code -edit code/pseudocode/pseudo
-  
-#if params is None:
-#    params = dict()
-#if analysis_type not in self.__allowed_analyses:
-#    raise RuntimeError
-#if not 0 <= test_split < 1 or not 0 <= min_score < 1:
-#    raise RuntimeError("test_split and min_score must be in [0; 1[")
-#
-#self._min_score = min_score
-#self._test_split = test_split
-#
-#self.analysis_type = analysis_type
-#
-# self._estimators = dict()
-#self._importances = dict()
-#self.n_features = number_of_features
-#
-#self._active_estimators = dict()
-#self._setup_models(params)
 
 ###############################################################
 * Models instantiation
@@ -415,19 +371,19 @@ We start by importing a bunch of things...
 
 .html code/html/spacer.html
 .html code/html/spacer.html
-.code code/python/fitting.py
+.code -edit code/python/fitting.py
 
 ###############################################################
 * Feature importance by model
 .html code/html/spacer.html
-.code code/python/importance.py
+.code -edit code/python/importance.py
 
 ###############################################################
 * Voting
 
 .html code/html/spacer.html
 .html code/html/spacer.html
-.code code/python/votes.py
+.code -edit code/python/votes.py
 
 ###############################################################
 * Good to go!
@@ -443,7 +399,7 @@ We start by importing a bunch of things...
 .html code/html/spacer.html
 Let's run the selector to see what features are important:
 
-.play code/python/importances_demo.py /START OMIT/,/END OMIT/
+.play -edit code/python/importances_demo.py /START OMIT/,/END OMIT/
 
 
 * But does it work?
@@ -479,7 +435,7 @@ Let's run the selector to see what features are important:
   Things should be as simple as possible, but not simpler...
 
 
-                                                                                                A. Einstein
+                                                                                    A. Einstein
     
 
 ###############################################################

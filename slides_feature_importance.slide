@@ -1,11 +1,11 @@
 #+theme=optum
 Good features beat algorithms
-Europython 2018
+Europython 2018 - Edinburgh
 27 Jul 2018
 Tags: optum, europython, python, 2018
 
 Pietro Mascolo
-Sr. Data Scientist, Optum Ireland
+Senior Data Scientist - Optum
 pietro_mascolo@optum.com
 @iz4vve
 
@@ -24,6 +24,7 @@ pietro_mascolo@optum.com
 .background imgs/bg_optum_white.png
 
 .html code/html/spacer.html
+.html code/html/math.html
 
 - introduce myself;
 - tell a story;
@@ -40,9 +41,9 @@ pietro_mascolo@optum.com
 .background imgs/bg_optum_white.png
 
 .image imgs/just-me.png 180 _
-- Physicist;
-- *Python* / *Go* enthusiast;
-- *Kotlin* / Scala practitioner;
+- (🇧🇷 * 🇮🇹) ⟶ (🇧🇷 * 🇮🇹) + 🇮🇪 + 🇮🇳
+- Physicist ⟶ Data Scientist ;
+- *Python* / *Go* / *Kotlin* / Scala / ... ;
 - Ham Radio Operator (*IZ4VVE*);
 - Mountain hiker and Karateka;
 - Amateur Photographer;
@@ -61,7 +62,7 @@ pietro_mascolo@optum.com
 : If anybody is interested, we are hiring ;)
 
 ###############################################################
-* Once upon a time, a brave knight...
+* Once upon a time, there was a brave knight...
 
 ###############################################################
 
@@ -89,8 +90,8 @@ pietro_mascolo@optum.com
 * The dragon
 .html code/html/spacer.html
 
-#.video imgs/crawl.mp4 video/mp4 500 _
-.html code/html/video.html
+.video imgs/crawl.mp4 video/mp4 500 _
+#.html code/html/video.html
 
 : That's A LOT of features for a raw dataset...
 : How many are duplicates? How many related to each other?
@@ -237,7 +238,7 @@ We have a dataset and a target.
 : RECURSIVE FEATURE ELIMINATION
 : This method eliminates the worst performin feature at each stage
 : For data with n features,
-: ->On first round ‘n-1’ models are created with combination of all features except one. The least performing feature is removed
+: -> On first round ‘n-1’ models are created with combination of all features except one. The least performing feature is removed
 : -> On second round ‘n-2’ models are created by removing another feature.
 : Wrapper Methods promises you a best set of features with a extensive greedy search.
 
@@ -329,8 +330,6 @@ We start by importing a bunch of things...
     __others = {
         "VarianceThreshold": VarianceThreshold,
     }
-
-    __allowed_analyses = {"classification", "regression", "generic_regression", "generic_classification"}
 
     __estimators_by_type = {
         "classification": ["__classifiers"],

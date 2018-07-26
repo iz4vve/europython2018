@@ -318,7 +318,7 @@ class EnsembleFeatureSelector(BaseEstimator):
         """
         if not self._is_fit:
             raise RuntimeError(
-                "Ensemble has not been fitted on data. Cannot cast votes"
+                "Ensemble has not been fit on data. Cannot cast votes"
             )
 
         self._get_importances()

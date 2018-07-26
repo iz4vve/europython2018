@@ -1,6 +1,6 @@
 #+theme=optum
 Good features beat algorithms
-Europython 2018 - Edinburgh
+Europython 2018 - Edinburgh 🏴󠁧󠁢󠁳󠁣󠁴󠁿
 27 Jul 2018
 Tags: optum, europython, python, 2018
 
@@ -131,6 +131,30 @@ pietro_mascolo@optum.com
 : enhanced generalization by reducing overfitting
 
 
+* Sometimes you won't even notice it...
+
+.html code/html/spacer.html
+.html code/html/spacer.html
+.image imgs/itcanhappentoyou.png _ 900
+#.caption And it's not always easy to detect...
+
+: it can happen to anybody and some can be difficult fo find.
+: that one time after clever feature  manipulation
+: I ran the algorithms. No tuning, no nothing: accuracy: 99.9%
+: typical data scientist working...
+
+* When you get 99.9% accuracy 😃
+
+.html code/html/spacer.html
+.image imgs/happy.jpg _ 600
+
+
+* ... 2.3 seconds later 🤔
+.html code/html/spacer.html
+.image imgs/suspicious.jpg _ 650
+
+* Let's move on
+
 ###############################################################
 
 * Let's go simpler: this is just a talk after all...
@@ -152,9 +176,6 @@ We have a dataset and a target.
 .html code/html/spacer.html
 .image imgs/Anscombe.png 400 _
 .caption Anscombe quartet
-#.caption All four datasets have almost the same descriptive statistics 
-#.caption (means, variances, correlation coefficient, regression coefficients)
-#.caption image taken from Wikipedia
 
 
 : Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
@@ -272,6 +293,8 @@ We have a dataset and a target.
 ###############################################################
 * Why are we here again?
 
+: we're here to fight a dragon!
+
 * 
 
 .html code/html/spacer.html
@@ -279,6 +302,8 @@ We have a dataset and a target.
 .image imgs/dragongif.gif _ 900
 
 : Let's implement a (simplistic,) `general` ensemble method that computes feature importances using different techniques.
+: it's an example. It does not aim at being complete or perfect.
+: you can adapt your selector to your problem as they are all looking for different things
 
 
 ###############################################################

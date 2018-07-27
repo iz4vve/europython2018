@@ -28,9 +28,8 @@ pietro_mascolo@optum.com
 
 - introduce myself;
 - tell a story;
-- show you some gifs and memes;
 - show you some code;
-- show you some results.
+- show you some numbers.
 
 : I want to make sure that you're all in the right room :)
 : An intermediate understanding of statistics and data handling will be VERY useful in following the talk.
@@ -41,7 +40,7 @@ pietro_mascolo@optum.com
 .background imgs/bg_optum_white.png
 
 .image imgs/just-me.png 180 _
-- (🇧🇷 * 🇮🇹) ⟶ (🇧🇷 * 🇮🇹) + 🇮🇪 + 🇮🇳
+- (🇧🇷 $\ast$ 🇮🇹) + 🇮🇪 + 🇮🇳;
 - Physicist ⟶ Data Scientist ;
 - *Python* / *Go* / *Kotlin* / Scala / ... ;
 - Ham Radio Operator (*IZ4VVE*);
@@ -58,7 +57,7 @@ pietro_mascolo@optum.com
 
 : Does anybody know of Optum/UHG?
 : This is actually old: we are now ranked 5th on Fortune 500.
-: We recently surpassed 300K employees worldwide, with presence of ~1200 people in Ireland.
+: ~300K employees worldwide, with presence of ~1200 people in Ireland.
 : If anybody is interested, we are hiring ;)
 
 ###############################################################
@@ -177,7 +176,7 @@ We have a dataset and a target.
 .image imgs/Anscombe.png 400 _
 .caption Anscombe quartet
 
-
+: three main classes of lfeature selection algorithms
 : Always be mindful of what you are trying to achieve: some techniques/metrics are more suitable than others.
 : There is no free lunch... but some lunches can be VERY expensive
 : Simple statistics can be very helpful in determining the type of dataset and the relationships between variables.
@@ -192,17 +191,15 @@ We have a dataset and a target.
 : Filter Methods considers the relationship between features and the target variable to compute the importance of features.
 
 .html code/html/spacer.html
-.image imgs/selection.png _ 700
+: .image imgs/selection.png _ 700
+.image imgs/notgood.jpg _ 600
 
+: Filter method measure feature "relevance"
+: Assessment: Use statistical tests
+: Results: Are (relatively) robust against overfitting • May fail to select the most “useful” features
 
-: - Pearson correlation;
-: - F Test;
-: - Mutual Information;
-: - Variance Threshold;
-: - LDA;
-: - ANOVA;
-: - Χ-square;
-: - Granger causality;
+: - Pearson correlation; F Test; Mutual Information; Variance Threshold; LDA; ANOVA; Χ-square; Granger causality;
+
 
 : F TEST
 : F Test is a statistical test used to compare between models and check if the difference is significant.
@@ -247,6 +244,11 @@ We have a dataset and a target.
 
 .image imgs/target.jpg _ 600
 
+: wrapper methods measure subset of features' "usefulness"
+: Search the space of all feature subsets
+: • Assessment: Use cross-validation 
+: Results Can in principle find the most “useful” features, but are prone to overfitting
+
 : The most famous examples are *forward*search* and *recursive*feature*elimination*.
 
 : FORWARD SEARCH
@@ -273,9 +275,17 @@ We have a dataset and a target.
 
 #.image imgs/Embedded.png _ 700
 #.image imgs/powerful.jpg _ 700
-.image imgs/fusion.jpg _ 700
+#.image imgs/fusion.jpg _ 700
+.html code/html/spacer.html
+.image imgs/whynotboth.jpg _ 650
 #.caption Embedded methods
 
+: Methods:
+: • Criterion: Measure feature subset “usefulness”
+: • Search: Search guided by the learning process
+: • Assessment: Use cross-validation Results:
+: • Similar to wrappers, but
+: • Less computationally expensive • Less prone to overfitting
 
 : they have features from both worlds. They can discriminate single features within a subset.
 : Most of these are full fledged ML algorithms
@@ -450,17 +460,17 @@ Let's run the selector to see what features are important:
 - makes data more understandable.
 - removes noise.
 
-* 
+#* 
 
-.html code/html/spacer.html
-.html code/html/spacer.html
-
-
-  Things should be as simple as possible, but not simpler...
+#.html code/html/spacer.html
+#.html code/html/spacer.html
 
 
-                                                                                    A. Einstein
-    
+#  Things should be as simple as possible, but not simpler...
+
+
+#                                                                                    A. Einstein
+
 
 ###############################################################
 * Q/A
